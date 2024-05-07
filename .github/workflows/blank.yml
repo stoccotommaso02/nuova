@@ -16,17 +16,23 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+      with:
+          # Recupero tutta la cronologia (branch e tag)
+          fetch-depth: 0
+    
     - name: Cache Docker
       uses: actions/cache@v4
       id: cache-docker
       with:
-        path: ${{ github.workspace }}
-        key: ${{ runner.os }}-docker-${{ hashFiles('**/README.md') }}
+        path: ${{ github.workspace }}/tools
+        key:  ${{ runner.os }}-docker-${{ hashFiles('**/README.md') }}
     
     - name: Build and push
       if: steps.cache-docker.outputs.cache-hit != 'true'
       run:  |
-        cd tools
+        cd ${{ github.workspace }}tools
         docker compose up -d
         docker tag argo-docs-latexpdfbuilder:latest stoccotommaso02/argo-docs.latexpdfbuilder:latest
         docker push stoccotommaso02/argo-docs.latexpdfbuilder:latest
