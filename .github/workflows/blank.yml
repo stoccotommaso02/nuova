@@ -50,3 +50,4 @@ jobs:
         docker tag stoccotommaso02/argo-docs-latexpdfbuilder:latest argo-docs-latexpdfbuilder:latest
         cd ${{ github.workspace }}/tools
         docker compose up -d
+
