@@ -41,7 +41,7 @@ jobs:
         cd ${{ github.workspace }}/tools
         docker compose up -d
         docker tag argo-docs-latexpdfbuilder:latest stoccotommaso02/argo-docs-latexpdfbuilder:latest
-        docker push stoccotommaso02/argo-docs.latexpdfbuilder:latest
+        docker push stoccotommaso02/argo-docs-latexpdfbuilder:latest
 
     - name: Pull image
       if: steps.cache-docker.outputs.cache-hit == 'true'
