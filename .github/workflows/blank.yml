@@ -32,7 +32,7 @@ jobs:
     - name: Build and push
       if: steps.cache-docker.outputs.cache-hit != 'true'
       run:  |
-        cd ${{ github.workspace }}tools
+        cd ${{ github.workspace }}/tools
         docker compose up -d
         docker tag argo-docs-latexpdfbuilder:latest stoccotommaso02/argo-docs.latexpdfbuilder:latest
         docker push stoccotommaso02/argo-docs.latexpdfbuilder:latest
@@ -42,5 +42,5 @@ jobs:
       run: |
         docker pull stoccotommaso02/argo-docs-latexpdfbuilder:latest
         docker tag stoccotommaso02/argo-docs-latexpdfbuilder:latest argo-docs-latexpdfbuilder:latest
-        cd tools
+        cd ${{ github.workspace }}/tools
         docker compose up -d
