@@ -22,6 +22,9 @@ jobs:
           # Recupero tutta la cronologia (branch e tag)
           fetch-depth: 0
           
+    - name: Cout github.actor name 
+      run: |
+          echo ${{ github.actor }}
     - name: Login Docker
       uses:  docker/login-action@v3
       with:
